@@ -1,0 +1,92 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+  const  int sudoku[9][9] = { // массив дл€ сравнени€
+        {3,1,5,8,2,7,9,4,6},
+        {4,6,8,9,1,5,7,3,2},
+        {7,2,9,3,4,6,5,1,8},
+        {9,4,6,5,3,8,1,2,7},
+        {5,7,1,6,9,2,4,8,3},
+        {8,3,2,1,7,4,6,9,5},
+        {6,9,3,2,5,1,8,7,4},
+        {2,5,7,4,8,9,3,6,1},
+        {1,8,4,7,6,3,2,5,9}
+    };
+
+int main() {
+    // ќбъ€вление и инициализаци€ статического массива (3 строки, 4 столбца)
+    
+    int matrix[9][9] = { // массив дл€ записи
+       {0,0,0,8,0,0,0,0,0},
+        {4,0,0,0,1,5,0,3,0},
+        {0,2,9,0,4,0,5,1,8},
+        {0,4,0,0,0,0,1,2,0},
+        {0,0,0,6,0,2,0,0,0},
+        {0,3,2,0,0,0,0,9,0},
+        {6,9,3,0,5,0,8,7,0},
+        {0,5,0,4,8,0,0,0,1},
+        {0,0,0,0,0,3,0,0,0}
+    };
+
+int r, c; //координатs
+
+int v; // вводимое значение эл-та
+
+int fail = 0, win = 0; //счЄтчики
+
+printf("Welcome to Sdoku!\nYou have 8 attempts to win\n\n");
+
+ drawlevel:
+printf("  ");
+for (int i =1; i<=9; i++){
+ printf("%d|", i);}
+ printf("\n");
+  for(int t =0; t<9; t++){ // отбражение уровн€
+      printf("%d ", t+1);
+for (int i=0; i<9; i++){
+    if (matrix[t][i]==0){
+    printf("_|");}
+    else  printf("%d|", matrix[t][i]);
+}
+      printf("\n");
+  }
+printf("\n");
+
+enterindex:
+printf("enter number of row 1-9\n"); scanf("%d",&r); 
+if(r>9||r<1){
+    printf ("uncorrect number, try again\n");
+    goto enterindex;
+}
+else{ printf("enter number of column 1-9\n"); scanf("%d", &c);
+    if (c>9||c<1){printf ("uncorrect number, try again\n");
+        goto enterindex;
+    }
+    else if(matrix[r-1][c-1]!=0){
+    printf("cell is full, select another\n");
+        goto enterindex;
+    } else
+    {
+        printf("enter value of element\n");
+        scanf("%d", &v);
+        if (v==(sudoku[r-1][c-1])){
+            printf(" right\n");
+            matrix[r-1][c-1]=v;
+            win++; if (win == 51) {printf("no more empty cells, you win\n");
+                exit(0);
+            }
+            goto drawlevel;
+        }
+        else {
+            printf("not right\n");
+            fail++;
+            printf("%d attempts left\n", 8-fail);
+             if (fail == 8) {printf("no more attempts, you lose\n");
+                exit(0);
+            goto drawlevel;
+        }
+    }
+    }
+}
+    return 0;
+}
