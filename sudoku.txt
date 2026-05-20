@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-  const  int sudoku[9][9] = { // массив для сравнения
+  const  int sudoku[9][9] = { // РјР°СЃСЃРёРІ РґР»СЏ СЃСЂР°РІРЅРµРЅРёСЏ
         {3,1,5,8,2,7,9,4,6},
         {4,6,8,9,1,5,7,3,2},
         {7,2,9,3,4,6,5,1,8},
@@ -12,11 +12,30 @@
         {2,5,7,4,8,9,3,6,1},
         {1,8,4,7,6,3,2,5,9}
     };
-
-int main() {
-    // Объявление и инициализация статического массива (3 строки, 4 столбца)
     
-    int matrix[9][9] = { // массив для записи
+    int intcheck(void){ //РїСЂРѕРІРµСЂРєР° РІРІРѕРґРёРјС‹С… С‡РёСЃРµР»
+        int value;
+        int check;
+        char puncmark;
+        checknumber:
+        
+   while (scanf("%d%c", &value, &puncmark)!=2||puncmark!='\n'){
+       printf("ERROR! Please enter integer number\n");
+       while (getchar() != '\n');
+       goto checknumber; 
+   }
+   
+       if (value<1||value>9){
+       printf("Please, enter correct number\n");
+           goto checknumber;
+       }
+       else return value;
+                        }
+   
+int main() {
+    // РћР±СЉСЏРІР»РµРЅРёРµ Рё РёРЅРёС†РёР°Р»РёР·Р°С†РёСЏ СЃС‚Р°С‚РёС‡РµСЃРєРѕРіРѕ РјР°СЃСЃРёРІР° (3 СЃС‚СЂРѕРєРё, 4 СЃС‚РѕР»Р±С†Р°)
+    
+    int matrix[9][9] = { // РјР°СЃСЃРёРІ РґР»СЏ Р·Р°РїРёСЃРё
        {0,0,0,8,0,0,0,0,0},
         {4,0,0,0,1,5,0,3,0},
         {0,2,9,0,4,0,5,1,8},
@@ -28,20 +47,18 @@ int main() {
         {0,0,0,0,0,3,0,0,0}
     };
 
-int r, c; //координатs
+int r, c; //РєРѕРѕСЂРґРёРЅР°С‚С‹ РЅСѓР¶РЅРѕР№ РєР»РµС‚РєРё
+int v; // РІРІРѕРґРёРјРѕРµ Р·РЅР°С‡РµРЅРёРµ СЌР»-С‚Р°
+int fail = 0, win = 0; //СЃС‡С‘С‚С‡РёРєРё
 
-int v; // вводимое значение эл-та
+printf("Welcome to Sudoku!\nYou have 8 attempts to win\n\n");
 
-int fail = 0, win = 0; //счётчики
-
-printf("Welcome to Sdoku!\nYou have 8 attempts to win\n\n");
-
- drawlevel:
+ drawlevel: // РѕС‚Р±СЂР°Р¶РµРЅРёРµ СѓСЂРѕРІРЅСЏ
 printf("  ");
 for (int i =1; i<=9; i++){
  printf("%d|", i);}
  printf("\n");
-  for(int t =0; t<9; t++){ // отбражение уровня
+  for(int t =0; t<9; t++){ 
       printf("%d ", t+1);
 for (int i=0; i<9; i++){
     if (matrix[t][i]==0){
@@ -52,23 +69,18 @@ for (int i=0; i<9; i++){
   }
 printf("\n");
 
-enterindex:
-printf("enter number of row 1-9\n"); scanf("%d",&r); 
-if(r>9||r<1){
-    printf ("uncorrect number, try again\n");
-    goto enterindex;
-}
-else{ printf("enter number of column 1-9\n"); scanf("%d", &c);
-    if (c>9||c<1){printf ("uncorrect number, try again\n");
-        goto enterindex;
-    }
-    else if(matrix[r-1][c-1]!=0){
+enterindex: // РІС‹Р±РѕСЂ РєР»РµС‚РєРё 
+printf("enter number of row 1-9\n"); 
+r = intcheck();
+printf("enter number of column 1-9\n");
+c = intcheck();
+if(matrix[r-1][c-1]!=0){
     printf("cell is full, select another\n");
         goto enterindex;
     } else
     {
         printf("enter value of element\n");
-        scanf("%d", &v);
+        v = intcheck(); //РІРІРѕРґ Р·РЅР°С‡РµРЅРёСЏ
         if (v==(sudoku[r-1][c-1])){
             printf(" right\n");
             matrix[r-1][c-1]=v;
@@ -81,12 +93,12 @@ else{ printf("enter number of column 1-9\n"); scanf("%d", &c);
             printf("not right\n");
             fail++;
             printf("%d attempts left\n", 8-fail);
+            goto drawlevel;
              if (fail == 8) {printf("no more attempts, you lose\n");
                 exit(0);
             goto drawlevel;
         }
     }
     }
-}
     return 0;
 }
