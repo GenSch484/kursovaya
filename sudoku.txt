@@ -37,7 +37,7 @@ int r, c; //координаты нужной клетки
 int v; // вводимое значение эл-та
 int fail = 0, win = 0; //счётчики
 
-printf("Welcome to Sudoku!\nYou have 8 attempts to win\n\n");
+printf("Welcome to Sudoku!\nYou have 8 attempts to win\nEnter '0' to exit\n");
 
  drawlevel: // отбражение уровня
  printf("\n    ");
@@ -101,6 +101,7 @@ void vis(int array[9][9], int row, int col){
         int value;
         int check;
         char puncmark;
+        char yn, el;
         checknumber:
         
    while (scanf("%d%c", &value, &puncmark)!=2||puncmark!='\n'){
@@ -109,9 +110,30 @@ void vis(int array[9][9], int row, int col){
        goto checknumber; 
    }
    
-       if (value<1||value>9){
+       if (value<0||value>9){
        printf("Please, enter correct number\n");
            goto checknumber;
        }
+       
+       if (value ==0){
+           printf("Do you want to exit? Y/N\n");
+           question:
+           scanf("%c%c", &yn, &el);
+           if ((yn=='Y')&&(el=='\n')){
+               printf("As you wish\n");
+               exit(0);
+           }
+           if((yn=='N')&&(el=='\n'))
+           {
+               printf("All right, lets continue a game\n");
+               goto checknumber;
+           }
+           else printf("Please, answer the question Y/N\n");
+           while (getchar() != '\n');
+           goto question;
+           
+       }
+       
+       
        else return value;
                         }
