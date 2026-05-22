@@ -110,7 +110,7 @@ int intcheck(void) { //проверка вводимых чисел
     char yn, el;
 checknumber:
 
-    while (scanf_s("%d%c", &value, &puncmark) != 2 || puncmark != '\n') {
+    while (scanf("%d%c", &value, &puncmark) != 2 || puncmark != '\n') {
         printf("ERROR! Please enter integer number\n");
         while (getchar() != '\n');
         goto checknumber;
@@ -124,7 +124,7 @@ checknumber:
     if (value == 0) {
         printf("Do you want to exit? Y/N\n");
     question:
-        scanf_s("%c%c", &yn, &el);
+        scanf("%c%c", &yn, &el);
         if ((yn == 'Y') && (el == '\n')) {
             printf("As you wish\n");
             exit(0);
