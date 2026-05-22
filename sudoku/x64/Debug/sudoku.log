@@ -1,0 +1,23 @@
+﻿  sudoku.cpp
+C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(112,20): warning C4473: "scanf_s": передано недостаточно аргументов для строки формата
+      C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(112,20):
+      заполнители и их параметры ожидают переменное число аргументов в количестве 3, но было предоставлено 2
+      C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(112,20):
+      отсутствующий вариативный аргумент "3" требуется для строки форматирования "%c"
+      C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(112,20):
+      этот аргумент используется в качестве размера буфера
+  
+C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(126,17): warning C4477: "scanf_s": в строке форматирования "%c" требуется аргумент типа "unsigned int", но вариативный аргумент "2" имеет тип "char *"
+      C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(126,17):
+      этот аргумент используется в качестве размера буфера
+  
+C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(126,17): warning C4473: "scanf_s": передано недостаточно аргументов для строки формата
+      C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(126,17):
+      заполнители и их параметры ожидают переменное число аргументов в количестве 4, но было предоставлено 2
+      C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(126,17):
+      отсутствующий вариативный аргумент "3" требуется для строки форматирования "%c"
+      C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(126,17):
+      этот аргумент используется описателем преобразования
+  
+C:\Users\heret\source\repos\sudoku\sudoku\sudoku.cpp(107,9): warning C4101: check: неиспользованная локальная переменная
+  sudoku.vcxproj -> C:\Users\heret\source\repos\sudoku\x64\Debug\sudoku.exe
